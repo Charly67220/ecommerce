@@ -335,7 +335,7 @@ input[type="tel"]:focus {
 }
 
 .pagination .page-item .page-link:hover {
-  background: #fb5c42;
+  background: #424bfb;
   color: #fff;
 }
 
@@ -344,9 +344,9 @@ input[type="tel"]:focus {
 }
 
 .pagination .page-item.active .page-link {
-  background: #fb5c42;
+  background: #424bfb;
   color: #fff;
-  border-color: #fb5c42;
+  border-color: #424bfb;
 }
 
 .text-primary {
@@ -1034,7 +1034,7 @@ a.text-primary:hover {
 }
 
 .product-hover-overlay a:hover {
-  background: #fb5c42;
+  background: #424bfb;
   color: #fff;
 }
 

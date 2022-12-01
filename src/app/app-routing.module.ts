@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { AboutusComponent } from './aboutus/aboutus.component';
 import { AddressComponent } from './address/address.component';
 import { CartComponent } from './cart/cart.component';
 import { CheckoutComponent } from './checkout/checkout.component';
@@ -13,6 +14,7 @@ import { ProductsingleComponent } from './productsingle/productsingle.component'
 import { ProfileDetailsComponent } from './profile-details/profile-details.component';
 import { ShopComponent } from './shop/shop.component';
 import { SignupComponent } from './signup/signup.component';
+
 
 const routes: Routes = [
   { path: 'home',    component: HomeComponent },
@@ -28,7 +30,8 @@ const routes: Routes = [
   { path: 'product-single', component: ProductsingleComponent},
   { path: 'profile-details', component: ProfileDetailsComponent},
   { path: 'shop', component: ShopComponent},
-  { path: 'signup', component: SignupComponent}
+  { path: 'signup', component: SignupComponent},
+  { path: 'about', component: AboutusComponent},
 
 ];
 

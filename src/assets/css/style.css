@@ -100,7 +100,7 @@ a:focus,
 a:hover {
   text-decoration: none;
   outline: 0;
-  color: #fb5c42;
+  color: #424bfb;
 }
 
 .btn.active:focus,
@@ -169,7 +169,7 @@ input[type="tel"]:focus {
 
 .btn-main:hover {
   background: transparent;
-  border-color: #fb5c42;
+  border-color: #424bfb;
   color: #000 !important;
 }
 
@@ -215,9 +215,9 @@ input[type="tel"]:focus {
 }
 
 .btn-black:hover {
-  background: #fb5c42;
+  background: #424bfb;
   color: #fff;
-  border-color: #fb5c42;
+  border-color: #424bfb;
 }
 
 .btn-small {
@@ -548,7 +548,7 @@ a.text-primary:hover {
 
 .navigation .navbar-nav > li > a:hover, .navigation .navbar-nav > li > a:active, .navigation .navbar-nav > li > a:focus {
   background: none;
-  color: #fb5c42;
+  color: #424bfb !important;
 }
 
 .navigation .navbar-nav .nav-link {
@@ -773,7 +773,7 @@ a.text-primary:hover {
 }
 
 .navbar-nav .nav-link:hover {
-  color: #fb5c42;
+  color: #424bfb !important;
 }
 
 .navbar-nav .nav-link span {

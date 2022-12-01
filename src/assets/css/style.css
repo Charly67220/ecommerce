@@ -161,9 +161,10 @@ input[type="tel"]:focus {
 }
 
 .btn-main {
-  background: #fb5c42;
-  color: #fff !important;
-  border-color: #fb5c42;
+  background: transparent;
+  color: #fb5c42 !important;
+  border-color: #0e1260;
+  font-size: 25px;
 }
 
 .btn-main:hover {
@@ -1669,7 +1670,7 @@ a.text-primary:hover {
 }
 
 .text-color {
-  color: #fb5c42;
+  color: #424bfb;
 }
 
 .feature {
@@ -2167,7 +2168,8 @@ table.shop_table_responsive {
   font-size: 20px;
     width: 60px;
     height: 60px;
-    background: #fb5c42;
+    background: #424bfb;
+    /* background: #fb5c42; */
     color: #fff;
     display: inline-block;
     text-align: center;

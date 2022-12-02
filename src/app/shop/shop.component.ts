@@ -9,6 +9,8 @@ import { HttpService } from '../http.service';
   styleUrls: ['./shop.component.scss']
 })
 export class ShopComponent {
+  page1 = true;
+  page2 = false;
 
   produits$!: Observable<Produit[]>;
 
@@ -18,5 +20,17 @@ export class ShopComponent {
 
   ngOnInit(): void {
     this.produits$ = this.httpService.getAllProduit();
+  }
+
+  displayPage(page: any) {
+    if (page == '1') {
+      this.page1 = true;
+      this.page2 = false;
+
+    };
+    if (page == '2') {
+      this.page2 = true;
+      this.page1 = false;
+    };
   }
 }

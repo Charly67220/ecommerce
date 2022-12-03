@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Produit } from '../models/produit.model';
 import { Observable } from 'rxjs';
 import { HttpService } from '../http.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-shop',
@@ -16,6 +17,7 @@ export class ShopComponent {
 
   constructor(
     public httpService: HttpService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -32,5 +34,9 @@ export class ShopComponent {
       this.page2 = true;
       this.page1 = false;
     };
+  }
+
+  onViewProduct(num: any) {
+    this.router.navigateByUrl(`product-single/${num}`);
   }
 }

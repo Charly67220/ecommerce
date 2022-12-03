@@ -27,7 +27,7 @@ const routes: Routes = [
   { path: 'forgot-password', component: ForgotPasswordComponent},
   { path: 'login', component: LoginComponent},
   { path: 'orders', component: OrdersComponent},
-  { path: 'product-single', component: ProductsingleComponent},
+  { path: 'product-single/:id', component: ProductsingleComponent},
   { path: 'profile-details', component: ProfileDetailsComponent},
   { path: 'shop', component: ShopComponent},
   { path: 'signup', component: SignupComponent},

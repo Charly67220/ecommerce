@@ -1,4 +1,12 @@
 import { Component } from '@angular/core';
+import { Observable } from 'rxjs';
+import { Produit } from '../models/produit.model';
+import { HttpService } from '../http.service';
+import { ActivatedRoute } from '@angular/router';
+import { filter } from 'rxjs/operators'
+import { KeyValuePipe } from '@angular/common';
+
+
 
 @Component({
   selector: 'app-productsingle',
@@ -7,4 +15,61 @@ import { Component } from '@angular/core';
 })
 export class ProductsingleComponent {
 
+  produit$!: Observable<Produit>;
+  produits$!: Observable<Produit[]>;
+
+  produit: any;
+  id!: number;
+  titre!: string;
+  ref!: string;
+  imageURL!: string;
+  prixav!: string;
+  prixap!: number;
+  presentation!: string;
+  categorie!: string;
+  description!: string;
+  info!: string;
+  commm!: string;
+
+  produits: any;
+
+  constructor(
+    public httpService: HttpService,
+    private route: ActivatedRoute,
+  ) { }
+
+  ngOnInit() {
+    const produitId = +this.route.snapshot.params['id'];
+    this.produit$ = this.httpService.getProduitById(produitId);
+    this.produit$.subscribe(data => {
+      this.produit = data;
+      this.titre = this.produit[0].titre;
+      this.ref = this.produit[0].ref;
+      this.imageURL = this.produit[0].imageURL;
+      this.prixav = this.produit[0].prixav;
+      this.prixap = this.produit[0].prixap;
+      this.presentation = this.produit[0].presentation;
+      this.categorie = this.produit[0].categorie;
+      this.description = this.produit[0].description;
+      this.info = this.produit[0].info;
+      this.commm = this.produit[0].commm;
+    });
+  }
+
+  ngAfterViewInit() {
+    this.produits$ = this.httpService.getAllProduit();
+    this.produits$.subscribe(data => {
+      console.log(data);
+      this.produits = data;
+      console.log(this.produits[0].categorie)
+    });
+
+    // const modifiedProduits$ = this.produits$.pipe(
+    //   filter(value => {
+    //     this.produits = value;
+    //   }),
+    //   // secondOperator(arguments),
+    //   // thirdOperator
+    // );
+  }
 }

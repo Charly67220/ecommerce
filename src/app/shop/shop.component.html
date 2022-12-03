@@ -7,12 +7,6 @@
           <h1 class="mb-3">Le Shop</h1>
           <p>Amoureux des grands paysages, passionnés de vélo et d'activité outdoors ? Venez découvrir ce que nous proposons pour s'évader !
             </p>
-          <nav aria-label="breadcrumb">
-            <ol class="breadcrumb bg-transparent justify-content-center">
-              <li class="breadcrumb-item"><a routerLink="/home">Home</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Shop</li>
-            </ol>
-          </nav>
         </div>
       </div>
     </div>
@@ -72,7 +66,7 @@
           <div class="col-lg-4 col-12 col-md-6 col-sm-6 mb-5" *ngFor="let produit of produits$ | async | slice:0:6" >
             <div class="product"*ngIf="page1">
               <div class="product-wrap">
-                <a routerLink="/product-single"><img class="img-fluid w-100 mb-3 img-first" [src]="produit.imageURL" [alt]="produit.titre"/></a>
+                <a (click)="onViewProduct(produit.id)" ><img class="img-fluid w-100 mb-3 img-first" [src]="produit.imageURL" [alt]="produit.titre" id="image" /></a>
               </div>
               <div class="product-hover-overlay">
                 <a href="#"><i class="tf-ion-android-cart"></i></a>

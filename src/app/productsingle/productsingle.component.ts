@@ -2,9 +2,9 @@ import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Produit } from '../models/produit.model';
 import { HttpService } from '../http.service';
-import { ActivatedRoute } from '@angular/router';
-import { filter } from 'rxjs/operators'
-import { KeyValuePipe } from '@angular/common';
+import { ActivatedRoute, Router } from '@angular/router';
+// import { filter } from 'rxjs/operators'
+// import { KeyValuePipe } from '@angular/common';
 
 
 
@@ -31,11 +31,12 @@ export class ProductsingleComponent {
   info!: string;
   commm!: string;
 
-  produits: any;
+  produits: any = {};
 
   constructor(
     public httpService: HttpService,
     private route: ActivatedRoute,
+    private router: Router
   ) { }
 
   ngOnInit() {
@@ -53,23 +54,18 @@ export class ProductsingleComponent {
       this.description = this.produit[0].description;
       this.info = this.produit[0].info;
       this.commm = this.produit[0].commm;
-    });
-  }
-
-  ngAfterViewInit() {
-    this.produits$ = this.httpService.getAllProduit();
-    this.produits$.subscribe(data => {
-      console.log(data);
-      this.produits = data;
-      console.log(this.produits[0].categorie)
+      this.produits$ = this.httpService.getProduitByCat(this.categorie);
     });
 
-    // const modifiedProduits$ = this.produits$.pipe(
-    //   filter(value => {
-    //     this.produits = value;
-    //   }),
-    //   // secondOperator(arguments),
-    //   // thirdOperator
-    // );
   }
+
+  onViewProduct(num: any) {
+   
+    const currentUrl = `product-single/${num}`;
+    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
+        this.router.navigate([currentUrl]);
+    });
+    
+  }
+
 }

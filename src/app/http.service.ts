@@ -2,11 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs';
 import { Produit } from './models/produit.model';
+import { filter } from 'rxjs/operators'
+
 
 @Injectable({
   providedIn: 'root'
 })
 export class HttpService {
+  produits: any;
 
   constructor(private http: HttpClient) { }
 
@@ -17,16 +20,21 @@ export class HttpService {
   getProduitById(produitId: number): Observable<Produit> {
     // return this.http.get<Produit>(`https://jepromenevotrechien.com/dbprodID.php?ID=5`);
     return this.http.get<Produit>(`https://jepromenevotrechien.com/dbprodID.php?ID=${produitId}`);
-}
-  
-// WORKING :
-//  getProd() {
-//   this.http.get(`https://jepromenevotrechien.com/dbprodID.php?ID=5`)
-//   .subscribe(response => {
-//     console.log(response);
-//   })
-//  }
+  }
+
+  getProduitByCat(cat: string): Observable<Produit[]> {
+    // return this.http.get<Produit>(`https://jepromenevotrechien.com/dbprodID.php?ID=5`);
+    return this.http.get<Produit[]>(`https://jepromenevotrechien.com/dbprodCat.php?categorie=${cat}`);
+  }
+
+  // WORKING :
+  //  getProd() {
+  //   this.http.get(`https://jepromenevotrechien.com/dbprodID.php?ID=5`)
+  //   .subscribe(response => {
+  //     console.log(response);
+  //   })
+  //  }
 
 }
- 
+
 

@@ -5,8 +5,9 @@
       <div class="col-lg-6">
         <div class="content text-center">
           <h1 class="mb-3">Le Shop</h1>
-          <p>Amoureux des grands paysages, passionnés de vélo et d'activité outdoors ? Venez découvrir ce que nous proposons pour s'évader !
-            </p>
+          <p>Amoureux des grands paysages, passionnés de vélo et d'activité outdoors ? Venez découvrir ce que nous
+            proposons pour s'évader !
+             </p>
         </div>
       </div>
     </div>
@@ -63,10 +64,11 @@
               </div>
             </div>
           </div> -->
-          <div class="col-lg-4 col-12 col-md-6 col-sm-6 mb-5" *ngFor="let produit of produits$ | async | slice:0:6" >
-            <div class="product"*ngIf="page1">
+          <div class="col-lg-4 col-12 col-md-6 col-sm-6 mb-5" *ngFor="let produit of produits$ | async">
+            <div class="product" *ngIf="page1">
               <div class="product-wrap">
-                <a (click)="onViewProduct(produit.id)" ><img class="img-fluid w-100 mb-3 img-first" [src]="produit.imageURL" [alt]="produit.titre" id="image" /></a>
+                <a (click)="onViewProduct(produit.id)"><img class="img-fluid w-100 mb-3 img-first"
+                    [src]="produit.imageURL" [alt]="produit.titre" id="image" /></a>
               </div>
               <div class="product-hover-overlay">
                 <a href="#"><i class="tf-ion-android-cart"></i></a>
@@ -81,10 +83,11 @@
               </div>
             </div>
           </div>
-          <div class="col-lg-4 col-12 col-md-6 col-sm-6 mb-5" *ngFor="let produit of produits$ | async | slice:7:13" >
+          <!-- <div class="col-lg-4 col-12 col-md-6 col-sm-6 mb-5" *ngFor="let produit of produits$ | async | slice:7:13">
             <div class="product" *ngIf="page2">
               <div class="product-wrap">
-                <a (click)="onViewProduct(produit.id)"><img class="img-fluid w-100 mb-3 img-first" [src]="produit.imageURL" [alt]="produit.titre"/></a>
+                <a (click)="onViewProduct(produit.id)"><img class="img-fluid w-100 mb-3 img-first"
+                    [src]="produit.imageURL" [alt]="produit.titre" /></a>
               </div>
               <div class="product-hover-overlay">
                 <a href="#"><i class="tf-ion-android-cart"></i></a>
@@ -98,8 +101,8 @@
                 </span>
               </div>
             </div>
-          </div>
-             <div class="col-12">
+          </div> -->
+          <div class="col-12">
             <nav aria-label="Page navigation">
               <ul class="pagination">
                 <li class="page-item">
@@ -125,31 +128,12 @@
 
 
         <!-- color and size -->
-        <form class="mb-5">
-
+        <form class="mb-5" (ngSubmit)="onCatFilter()">
 
           <!-- color -->
           <!-- <section class="widget widget-colors mb-5">
             <h3 class="widget-title h4 mb-4">Catégories</h3>
             <ul class="list-inline">
-              <li class="list-inline-item mr-4">
-                <div class="custom-control custom-checkbox color-checkbox">
-                  <input type="checkbox" class="custom-control-input" id="color1">
-                  <label class="custom-control-label sky-blue" for="color1"></label>
-                </div>
-              </li>
-              <li class="list-inline-item mr-4">
-                <div class="custom-control custom-checkbox color-checkbox">
-                  <input type="checkbox" class="custom-control-input" id="color2" checked>
-                  <label class="custom-control-label red" for="color2"></label>
-                </div>
-              </li>
-              <li class="list-inline-item mr-4">
-                <div class="custom-control custom-checkbox color-checkbox">
-                  <input type="checkbox" class="custom-control-input" id="color3">
-                  <label class="custom-control-label dark" for="color3"></label>
-                </div>
-              </li>
               <li class="list-inline-item mr-4">
                 <div class="custom-control custom-checkbox color-checkbox">
                   <input type="checkbox" class="custom-control-input" id="color4">
@@ -169,29 +153,30 @@
           <section class="widget widget-sizes mb-5">
             <h3 class="widget-title h4 mb-4">Catégories</h3>
             <div class="custom-control custom-checkbox">
-              <input type="checkbox" class="custom-control-input" id="size1" checked style="margin: 5px">
+              <input type="checkbox" class="custom-control-input" id="alimentation" name="alimentation" checked
+                style="margin: 5px" [(ngModel)]="alimentation">
               <label class="custom-control-label" for="size1">Alimentation</label>
             </div>
             <div class="custom-control custom-checkbox">
-              <input type="checkbox" class="custom-control-input" id="size2" style="margin: 5px">
+              <input type="checkbox" class="custom-control-input" id="voyage" name="voyage" style="margin: 5px"
+                [(ngModel)]="voyage">
               <label class="custom-control-label" for="size2">Voyage</label>
             </div>
             <div class="custom-control custom-checkbox">
-              <input type="checkbox" class="custom-control-input" id="size3" style="margin: 5px">
+              <input type="checkbox" class="custom-control-input" id="expedition" name="expedition" style="margin: 5px"
+                [(ngModel)]="expedition">
               <label class="custom-control-label" for="size3">Expédition</label>
             </div>
             <div class="custom-control custom-checkbox">
-              <input type="checkbox" class="custom-control-input" id="size4" style="margin: 5px">
+              <input type="checkbox" class="custom-control-input" id="sport" name="sport" style="margin: 5px"
+                [(ngModel)]="sport">
               <label class="custom-control-label" for="size4">Sport</label>
             </div>
-            <!-- <div class="custom-control custom-checkbox">
-              <input type="checkbox" class="custom-control-input" id="size5">
-              <label class="custom-control-label" for="size5">XS Extra Small</label>
-            </div> -->
           </section>
 
-          <button type="button" class="btn btn-black btn-small">Filtrer</button>
+          <button type="submit" class="btn btn-black btn-small">Filtrer</button>
         </form>
+
 
         <!-- popular product -->
         <section class="widget widget-popular mb-5">

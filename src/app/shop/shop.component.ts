@@ -12,6 +12,11 @@ import { Router } from '@angular/router';
 export class ShopComponent {
   page1 = true;
   page2 = false;
+  expedition!: string;
+  sport!: string;
+  alimentation!: string;
+  voyage!: string;
+  
 
   produits$!: Observable<Produit[]>;
 
@@ -38,5 +43,24 @@ export class ShopComponent {
 
   onViewProduct(num: any) {
     this.router.navigateByUrl(`product-single/${num}`);
+  }
+
+  onCatFilter() {
+    console.log(this.expedition);
+  
+    //initialisation à 0 :
+    this.produits$ = this.httpService.getProduitByCat('');
+    if (this.sport){
+      this.produits$ = this.httpService.getProduitByCat('sport');
+    }
+    if (this.expedition){
+      this.produits$ = this.httpService.getProduitByCat('expedition');
+    }
+    if (this.alimentation){
+      this.produits$ = this.httpService.getProduitByCat('alimentation');
+    }
+    if (this.voyage){
+      this.produits$ = this.httpService.getProduitByCat('voyage');
+    }
   }
 }

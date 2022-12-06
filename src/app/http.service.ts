@@ -14,22 +14,20 @@ export class HttpService {
   constructor(private http: HttpClient) { }
 
   getAllProduit(): Observable<Produit[]> {
-    return this.http.get<Produit[]>('https://jepromenevotrechien.com/dbprod.php')
+    return this.http.get<Produit[]>('https://charlygo.fr/dbprod.php')
   }
 
   getProduitById(produitId: number): Observable<Produit> {
-    // return this.http.get<Produit>(`https://jepromenevotrechien.com/dbprodID.php?ID=5`);
-    return this.http.get<Produit>(`https://jepromenevotrechien.com/dbprodID.php?ID=${produitId}`);
+    return this.http.get<Produit>(`https://charlygo.fr/dbprodID.php?ID=${produitId}`);
   }
 
   getProduitByCat(cat: string): Observable<Produit[]> {
-    // return this.http.get<Produit>(`https://jepromenevotrechien.com/dbprodID.php?ID=5`);
-    return this.http.get<Produit[]>(`https://jepromenevotrechien.com/dbprodCat.php?categorie=${cat}`);
+    return this.http.get<Produit[]>(`https://charlygo.fr/dbprodCat.php?categorie=${cat}`);
   }
 
   // WORKING :
   //  getProd() {
-  //   this.http.get(`https://jepromenevotrechien.com/dbprodID.php?ID=5`)
+  //   this.http.get(`https://charlygo.fr/dbprodID.php?ID=5`)
   //   .subscribe(response => {
   //     console.log(response);
   //   })

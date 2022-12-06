@@ -21,6 +21,7 @@ import { EditAddressComponent } from './edit-address/edit-address.component';
 import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { AboutusComponent } from './aboutus/aboutus.component';
 import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -46,7 +47,8 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     SlickCarouselModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

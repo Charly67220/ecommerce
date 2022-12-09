@@ -3,6 +3,8 @@ import { Produit } from '../models/produit.model';
 import { Observable } from 'rxjs';
 import { HttpService } from '../http.service';
 import { Router } from '@angular/router';
+import { CartService } from '../cart.service';
+
 
 @Component({
   selector: 'app-shop',
@@ -19,10 +21,12 @@ export class ShopComponent {
   
 
   produits$!: Observable<Produit[]>;
+  // cart$!: Produit[];
 
   constructor(
     public httpService: HttpService,
-    private router: Router
+    private router: Router,
+    public cartService: CartService,
   ) { }
 
   ngOnInit(): void {
@@ -63,4 +67,9 @@ export class ShopComponent {
       this.produits$ = this.httpService.getProduitByCat('voyage');
     }
   }
+
+  addProductToCart(produit: Produit): void{
+    this.cartService.addItem(produit, 1);
+    alert("produit ajouté au panier")
+ }
 }

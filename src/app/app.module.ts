@@ -48,7 +48,7 @@ import { FormsModule } from '@angular/forms';
     AppRoutingModule,
     SlickCarouselModule,
     HttpClientModule,
-    FormsModule
+    FormsModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

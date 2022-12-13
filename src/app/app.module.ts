@@ -22,6 +22,10 @@ import { SlickCarouselModule } from 'ngx-slick-carousel';
 import { AboutusComponent } from './aboutus/aboutus.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { MatButtonModule } from '@angular/material/button';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { OverlayModule } from "@angular/cdk/overlay";
 
 @NgModule({
   declarations: [
@@ -49,6 +53,10 @@ import { FormsModule } from '@angular/forms';
     SlickCarouselModule,
     HttpClientModule,
     FormsModule,
+    MatButtonModule,
+    MatSnackBarModule,
+    BrowserAnimationsModule,
+    OverlayModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -14,7 +14,10 @@ import { ShoppingCart } from '../models/shopping-cart.model';
 export class CartComponent {
   session: any
   items: any
-  produit$!: Observable<Produit>;
+  nbitems!: number;
+  total!: number;
+  subTotal: number = 0;
+  empty!: string;
 
 
   constructor(
@@ -25,14 +28,20 @@ export class CartComponent {
   ngOnInit(): void {
     this.session = this.cartService.getItemFromCart();
     const restoredSession = JSON.parse(this.session);
-    // console.log(restoredSession.items);
     this.items = restoredSession.items;
-    this.items.forEach((element: any) => {
-      console.log({ element },);
-    
-      // this.produit$ = this.httpService.getProduitById(this.items.productId);
-      // console.log(this.produit$)
+    this.items.forEach((item: any) => {
+      this.nbitems += item.quantity;
+      this.total = item.prixap * item.quantity
+      this.subTotal += this.total
     });
+    if (this.items.length === 0) {
+      this.empty = "Votre panier est vide !";
+    }
 
+  }
+
+  public removeProductFromCart(product: Produit): void {
+    this.cartService.deleteItem(product);
+    location.reload();
   }
 }

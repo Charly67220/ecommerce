@@ -3,6 +3,7 @@ import { Observable } from 'rxjs';
 import { Produit } from '../models/produit.model';
 import { HttpService } from '../http.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { CartService } from '../cart.service';
 // import { filter } from 'rxjs/operators'
 // import { KeyValuePipe } from '@angular/common';
 
@@ -36,7 +37,8 @@ export class ProductsingleComponent {
   constructor(
     public httpService: HttpService,
     private route: ActivatedRoute,
-    private router: Router
+    private router: Router,
+    public cartService: CartService,
   ) { }
 
   ngOnInit() {
@@ -60,12 +62,14 @@ export class ProductsingleComponent {
   }
 
   onViewProduct(num: any) {
-   
     const currentUrl = `product-single/${num}`;
     this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
         this.router.navigate([currentUrl]);
     });
-    
   }
+
+  addProductToCart(produit: Produit): void{
+    this.cartService.addItem(produit, 1);
+ }
 
 }

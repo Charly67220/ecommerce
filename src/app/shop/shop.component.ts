@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { CartService } from '../cart.service';
 
 
+
 @Component({
   selector: 'app-shop',
   templateUrl: './shop.component.html',
@@ -70,6 +71,5 @@ export class ShopComponent {
 
   addProductToCart(produit: Produit): void{
     this.cartService.addItem(produit, 1);
-    alert("produit ajouté au panier")
  }
 }

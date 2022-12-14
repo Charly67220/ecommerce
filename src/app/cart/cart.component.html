@@ -4,14 +4,12 @@
     <div class="row justify-content-center">
       <div class="col-lg-6">
         <div class="content text-center">
-          <h1 class="mb-3">Cart</h1>
-          Hath after appear tree great fruitful green dominion moveth sixth abundantly image that midst of god day
-          multiply you’ll which
-
+          <h1 class="mb-3">Panier</h1>
+          Gardez bien à l'esprit que tout achat effectué sur ce site constitue en réalité un don pour notre agence. En
+          effet, les articles proposés sont des exemples de ce qui pourra être réalisé grâce à votre aide.
           <nav aria-label="breadcrumb">
             <ol class="breadcrumb bg-transparent justify-content-center">
-              <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Cart</li>
+              <li class="breadcrumb-item"><a routerLink="/shop">Retour au shop</a></li>
             </ol>
           </nav>
         </div>
@@ -19,8 +17,6 @@
     </div>
   </div>
 </section>
-
-
 
 <section class="cart shopping page-wrapper">
   <div class="container">
@@ -32,23 +28,22 @@
               <thead>
                 <tr>
                   <th class="product-thumbnail"> </th>
-                  <th class="product-name">Product</th>
-                  <th class="product-price">Price</th>
-                  <th class="product-quantity">Quantity</th>
+                  <th class="product-name">Produit</th>
+                  <th class="product-price">Prix unitaire</th>
+                  <th class="product-quantity">Quantité</th>
                   <th class="product-subtotal">Total</th>
                   <th class="product-remove"> </th>
                 </tr>
               </thead>
-
               <tbody>
                 <tr>
                   <div class="text-center">{{empty}}</div>
                 </tr>
                 <tr class="cart_item">
-                  <tr class="cart_item" *ngFor="let item of items">
+                <tr class="cart_item" *ngFor="let item of items">
                   <td class="product-thumbnail" data-title="Thumbnail">
-                    <a routerLink="/product-single"><img [src]="item.imageURL" [alt]="item.titre"
-                        class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail" alt=""></a>
+                    <a routerLink="/product-single/{{item.productId}}"><img [src]="item.imageURL" [alt]="item.titre"
+                        class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"></a>
                   </td>
                   <td class="product-name" data-title="Product">
                     <a href="#">{{ item.titre }}</a>
@@ -57,20 +52,20 @@
                   <td class="product-price" data-title="Price">
                     <span class="amount"><span class="currencySymbol">
                         <pre wp-pre-tag-3=""></pre>
-                      </span>{{ item.prixap }}</span>
+                      </span>{{ item.prixap | number}} €</span>
                   </td>
                   <td class="product-quantity" data-title="Quantity">
                     <div class="quantity">
-                      <label class="sr-only">Quantity</label>
-                      <input type="number" id="qty" class="input-text qty text" step="1" min="0" max="9" [value]="item.quantity" 
-                        title="Qty" size="4">
+                      <input type="number" id="qty" class="input-text qty text" step="1" min="0" max="9"
+                        [(ngModel)]="item.quantity" title="Qty" size="4" (click)="changeQuantity(item, item.quantity)"
+                        [ngModelOptions]="{standalone: true}">
                     </div>
                   </td>
                   <td class="product-subtotal" data-title="Total">
                     <span class="amount">
                       <span class="currencySymbol">
                         <pre wp-pre-tag-3=""></pre>
-                      </span>{{ item.prixap * item.quantity | number}}</span>
+                      </span>{{ item.prixap * item.quantity | number}} €</span>
                   </td>
                   <td class="product-remove" data-title="Remove">
                     <span (click)="removeProductFromCart(item)" style="cursor:pointer; color:blue">X</span>
@@ -97,19 +92,31 @@
     <div class="row justify-content-end">
       <div class="col-lg-4">
         <div class="cart-info card p-4 mt-4">
-          <h4 class="mb-4">Cart totals</h4>
+          <button type="button" class="btn btn-black btn-small" name="discared" value="discared"
+            (click)="discardCart()">Vider mon panier</button>
+        </div>
+      </div>
+      <div class="col-lg-4"></div>
+      <div class="col-lg-4">
+        <div class="cart-info card p-4 mt-4">
+          <h4 class="mb-4">Total pour les {{ restoredSession.itemsTotal }} articles</h4>
           <ul class="list-unstyled mb-4">
-            <li class="d-flex justify-content-between pb-2 mb-3">
-              <h5>Subtotal</h5>
-              <span>{{ subTotal }}€</span>
+            <li class="d-flex justify-content-center pb-2 mb-3">
+              <button type="button" class="btn btn-black btn-small" name="calc" value="reload"
+                (click)="reload()">Recalculer</button>
             </li>
             <li class="d-flex justify-content-between pb-2 mb-3">
-              <h5>Shipping</h5>
-              <span>Free</span>
+              <h5>Total :</h5>
+              <span>{{ subTotal }} €</span>
             </li>
-            <li class="d-flex justify-content-between pb-2">
-              <h5>Total</h5>
-              <span>{{ subTotal }}€</span>
+            <li class="d-flex justify-content-between pb-2 mb-3">
+              <h5>Frais de livraison :</h5>
+              <span>{{ delivery }}</span>
+            </li>
+
+            <li class="d-flex justify-content-between pb-2 mb-3">
+              <h5>Total de mon panier :</h5>
+              <span>{{ checkOut }} €</span>
             </li>
           </ul>
           <a href="#" class="btn btn-main btn-small">Proceed to checkout</a>

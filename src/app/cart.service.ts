@@ -2,12 +2,7 @@ import { Injectable } from '@angular/core';
 import { Produit } from './models/produit.model';
 import { ShoppingCart } from "./models/shopping-cart.model";
 import { CartItem } from './models/cart-item.model';
-import {
-  MatSnackBar,
-  MatSnackBarHorizontalPosition,
-  MatSnackBarVerticalPosition,
-  
-} from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root',
@@ -35,8 +30,9 @@ export class CartService {
     item.prixap = produit.prixap;
     item.titre = produit.titre;
 
-    cart.items = cart.items.filter((cartItem) => cartItem.quantity > 0);
+    // cart.items = cart.items.filter((cartItem) => cartItem.quantity > 0);
 
+    this.calculateCart(cart);
     this.save(cart);
     this.openSnackBar();
   }
@@ -44,7 +40,30 @@ export class CartService {
   public deleteItem(produit: Produit) {
     const cart = this.retrieve();
     cart.items = cart.items.filter((item) => item.titre !== produit.titre);
+    this.calculateCart(cart);
     this.save(cart);
+  }
+
+  public updateQte(itemLive: CartItem, quantity: number): void {
+    const cart = this.retrieve();
+    if (quantity === 0) {
+      cart.items = cart.items.filter((item) => item.titre !== itemLive.titre);
+    }
+    else {
+      let item = cart.items.find((p) => p.productId === itemLive.productId);
+      if (item === undefined) {
+        item = new CartItem();
+        item.productId = itemLive.productId;
+        cart.items.push(item);
+      }
+      item.quantity = quantity;
+    }
+    this.calculateCart(cart);
+    this.save(cart);
+    if (quantity === 0) {
+      // pour éviter que l'utilisateur remette une quantité pour un item qui à été supprimé
+      location.reload();
+    }
   }
 
   private retrieve(): ShoppingCart {
@@ -58,6 +77,15 @@ export class CartService {
 
   private save(cart: ShoppingCart): void {
     localStorage.setItem(this.storageKey, JSON.stringify(cart));
+  }
+
+  private calculateCart(cart: ShoppingCart): void {
+    cart.grossTotal = cart.items
+      .map((item) => item.quantity * item.prixap)
+      .reduce((previous, current) => previous + current, 0);
+    cart.itemsTotal = cart.items
+      .map((item) => item.quantity)
+      .reduce((previous, current) => previous + current, 0);
   }
 
   getItemFromCart() {

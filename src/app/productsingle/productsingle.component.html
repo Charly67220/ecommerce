@@ -6,12 +6,11 @@
         <div class="content text-center" *ngIf="produit$ | async as produit">
           <h1 class="mb-3">{{ titre }}</h1>
           <p>{{ presentation }}</p>
-          <!-- <nav aria-label="breadcrumb">
+          <nav aria-label="breadcrumb">
             <ol class="breadcrumb bg-transparent justify-content-center">
-              <li class="breadcrumb-item"><a routerLink="/">Home</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Product Single</li>
-            </ol>
-          </nav> -->
+            <li class="breadcrumb-item"><a routerLink="/shop">Retour au shop</a></li>
+          </ol>
+          </nav>
         </div>
       </div>
     </div>
@@ -68,8 +67,8 @@
 
           <form class="cart" action="#" method="post">
             <div class="quantity d-flex align-items-center">
-              <input type="number" id="#" class="input-text qty text form-control w-25 mr-3" step="1" min="1" max="9"
-                name="quantity" value="1" title="Qty" size="4">
+              <!-- <input type="number" id="#" class="input-text qty text form-control w-25 mr-3" step="1" min="1" max="9"
+                name="quantity" value="1" title="Qty" size="4"> -->
               <a (click)="addProductToCart(produit)" class="btn btn-main btn-small">Ajouter au panier</a>
             </div>
           </form>

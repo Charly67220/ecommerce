@@ -69,7 +69,7 @@ export class ProductsingleComponent {
   }
 
   addProductToCart(produit: Produit): void{
-    this.cartService.addItem(produit, 1);
+    this.cartService.addItem(this.produit[0], 1);
  }
 
 }

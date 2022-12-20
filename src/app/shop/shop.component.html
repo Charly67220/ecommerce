@@ -69,7 +69,7 @@
           <div class="col-lg-4 col-12 col-md-6 col-sm-6 mb-5" *ngFor="let produit of produits$ | async">
             <div class="product" *ngIf="page1">
               <div class="product-wrap">
-                <a (click)="onViewProduct(produit.id)" style="cursor:pointer"><img class="img-fluid w-100 mb-3 img-first"
+                <a (click)="stockRecentItem(produit)" style="cursor:pointer"><img class="img-fluid w-100 mb-3 img-first"
                     [src]="produit.imageURL" [alt]="produit.titre" id="image" /></a>
               </div>
               <div class="product-hover-overlay">
@@ -180,30 +180,14 @@
         </form>
 
 
-        <!-- popular product -->
+        <!-- recent product -->
         <section class="widget widget-popular mb-5">
           <h3 class="widget-title mb-4 h4">Articles vus récemment</h3>
-          <a class="popular-products-item media" routerLink="/product-single">
-            <img src="assets/images/p-1.jpg" alt="" class="img-fluid mr-4">
+          <a class="popular-products-item media" routerLink="/product-single/{{prod.productId}}" *ngFor="let prod of prods">
+            <img [src]="prod.imageURL" [alt]="prod.titre"class="img-fluid mr-4">
             <div class="media-body">
-              <h6>Contrast <br>Backpack</h6>
-              <span class="price">$45</span>
-            </div>
-          </a>
-
-          <a class="popular-products-item media" routerLink="/product-single">
-            <img src="assets/images/p-2.jpg" alt="" class="img-fluid mr-4">
-            <div class="media-body">
-              <h6>Hoodie with <br>Logo</h6>
-              <span class="price">$45</span>
-            </div>
-          </a>
-
-          <a class="popular-products-item media" routerLink="/product-single">
-            <img src="assets/images/p-3.jpg" alt="" class="img-fluid mr-4">
-            <div class="media-body">
-              <h6>Traveller<br>Backpack</h6>
-              <span class="price">$45</span>
+              <h6>{{ prod.titre }}</h6>
+              <span class="price">{{ prod.prixap | number}} €</span>
             </div>
           </a>
         </section>

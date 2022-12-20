@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs';
 import { Produit } from './models/produit.model';
-import { filter } from 'rxjs/operators'
 
 
 @Injectable({
@@ -24,14 +23,6 @@ export class HttpService {
   getProduitByCat(cat: string): Observable<Produit[]> {
     return this.http.get<Produit[]>(`https://charlygo.fr/dbprodCat.php?categorie=${cat}`);
   }
-
-  // WORKING :
-  //  getProd() {
-  //   this.http.get(`https://charlygo.fr/dbprodID.php?ID=5`)
-  //   .subscribe(response => {
-  //     console.log(response);
-  //   })
-  //  }
 
 }
 

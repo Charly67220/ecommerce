@@ -259,7 +259,7 @@
       <div class="col-lg-4 col-12 col-md-6 col-sm-6 mb-5" *ngFor="let produit of produits$ | async " >
         <div class="product">
           <div class="product-wrap">
-            <a (click)="onViewProduct(produit.id)"><img class="img-fluid w-100 mb-3 img-first" [src]="produit.imageURL" [alt]="produit.titre"/></a>
+            <a (click)="stockRecentItem(produit)" style="cursor:pointer"><img class="img-fluid w-100 mb-3 img-first" [src]="produit.imageURL" [alt]="produit.titre"/></a>
           </div>
           <div class="product-hover-overlay">
             <a href="#"><i class="tf-ion-android-cart"></i></a>
@@ -267,7 +267,7 @@
           </div>
 
           <div class="product-info">
-            <h2 class="product-title h5 mb-0"><a (click)="onViewProduct(produit.id)">{{ produit.titre }}</a></h2>
+            <h2 class="product-title h5 mb-0"><a (click)="stockRecentItem(produit)">{{ produit.titre }}</a></h2>
             <span class="price">
               {{ produit.prixap | number }} €
             </span>

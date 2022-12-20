@@ -4,6 +4,8 @@ import { Produit } from '../models/produit.model';
 import { HttpService } from '../http.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { CartService } from '../cart.service';
+import { CartItem } from '../models/cart-item.model';
+import { LastService } from '../last.service';
 // import { filter } from 'rxjs/operators'
 // import { KeyValuePipe } from '@angular/common';
 
@@ -39,6 +41,7 @@ export class ProductsingleComponent {
     private route: ActivatedRoute,
     private router: Router,
     public cartService: CartService,
+    public lastService: LastService,
   ) { }
 
   ngOnInit() {
@@ -63,13 +66,18 @@ export class ProductsingleComponent {
 
   onViewProduct(num: any) {
     const currentUrl = `product-single/${num}`;
-    this.router.navigateByUrl('/', {skipLocationChange: true}).then(() => {
-        this.router.navigate([currentUrl]);
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => {
+      this.router.navigate([currentUrl]);
     });
   }
 
-  addProductToCart(produit: Produit): void{
+  addProductToCart(produit: Produit): void {
     this.cartService.addItem(this.produit[0], 1);
- }
+  }
+
+  stockRecentItem(produit: Produit): void {
+    this.onViewProduct(produit.id);
+    this.lastService.stockProd(produit);
+  }
 
 }

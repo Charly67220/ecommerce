@@ -4,6 +4,8 @@ import { Observable } from 'rxjs';
 import { HttpService } from '../http.service';
 import { Router } from '@angular/router';
 import { CartService } from '../cart.service';
+import { LastService } from '../last.service';
+import { ShoppingCart } from '../models/shopping-cart.model';
 
 
 
@@ -19,19 +21,27 @@ export class ShopComponent {
   sport!: string;
   alimentation!: string;
   voyage!: string;
-  
 
+  prods: any;
+  
   produits$!: Observable<Produit[]>;
-  // cart$!: Produit[];
 
   constructor(
     public httpService: HttpService,
     private router: Router,
     public cartService: CartService,
+    public lastService: LastService,
   ) { }
 
   ngOnInit(): void {
     this.produits$ = this.httpService.getAllProduit();
+    const session = this.lastService.getRecentItem();
+    if (session === null) {
+      return
+    } else {
+      const restoredSession = JSON.parse(session);
+      this.prods = restoredSession.items;
+    };
   }
 
   displayPage(page: any) {
@@ -72,4 +82,9 @@ export class ShopComponent {
   addProductToCart(produit: Produit): void{
     this.cartService.addItem(produit, 1);
  }
+
+ stockRecentItem(produit: Produit): void {
+  this.onViewProduct(produit.id);
+  this.lastService.stockProd(produit)
+}
 }

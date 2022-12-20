@@ -203,9 +203,9 @@ input[type="tel"]:focus {
 }
 
 .btn-transparent:hover {
-  background: #fb5c42;
+  background: #424bfb;
   color: #fff !important;
-  border-color: #fb5c42;
+  border-color: #424bfb;
 }
 
 .btn-black {

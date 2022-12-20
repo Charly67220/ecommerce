@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { CartService } from '../cart.service';
 import { HttpService } from '../http.service';
+import { LastService } from '../last.service';
 import { CartItem } from '../models/cart-item.model';
 import { Produit } from '../models/produit.model';
 
@@ -23,6 +24,7 @@ export class CartComponent {
   constructor(
     public cartService: CartService,
     public httpService: HttpService,
+    public lastService: LastService,
   ) { }
 
   ngOnInit(): void {
@@ -35,35 +37,36 @@ export class CartComponent {
       if (this.items.length === 0) {
         this.empty = "Votre panier est vide !";
       }
-      this.items.forEach((item: any) => {
-        this.total = item.prixap * item.quantity;
-        this.subTotal += this.total;
-      });
     };
-    if (this.subTotal > 49) {
+    if (this.restoredSession.grossTotal > 49) {
       this.delivery = "Offerts";
-      this.checkOut = this.subTotal;
+      this.checkOut = this.restoredSession.grossTotal;
     } else {
       this.delivery = "8 €";
-      this.checkOut = this.subTotal + 8;
-    }
+      this.checkOut = this.restoredSession.grossTotal + 8;
+    };
   }
 
   reload() {
-    location.reload();
+    this.ngOnInit();
   }
 
   changeQuantity(item: CartItem, qte: number): void {
     this.cartService.updateQte(item, qte);
+    this.reload();
   }
 
   removeProductFromCart(product: Produit): void {
     this.cartService.deleteItem(product);
     this.reload();
-  }  
+  }
 
   discardCart() {
     localStorage.clear();
-    this.reload();
+    location.reload();
+  }
+
+  stockRecentItem(product: CartItem): void {
+    this.lastService.stockItem(product);
   }
 }

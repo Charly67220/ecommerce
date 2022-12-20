@@ -11,13 +11,23 @@ export class HeaderComponent {
 
   session: any;
   restoredSession: any;
+  defined: boolean = true;
 
   constructor(
     public cartService: CartService,
   ) { }
   ngOnInit(): void {
     this.session = this.cartService.getItemFromCart();
-    this.restoredSession = JSON.parse(this.session);
+    if (this.session === null) {
+      this.defined = false;
+      return;
+    } else {
+      this.restoredSession = JSON.parse(this.session);
+    };
     // console.log(localStorage)
+  }
+
+  reload() {
+    this.ngOnInit();
   }
 }

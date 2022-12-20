@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-white w-100 navigation" id="navbar">
   <div class="container">
-    <a class="navbar-brand font-weight-bold" routerLink="/">E-Commerce</a>
+    <a class="navbar-brand font-weight-bold" routerLink="/">Le Pourboire</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#main-navbar"
       aria-controls="main-navbar" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
@@ -49,7 +49,7 @@
       <li class="list-inline-item">
         <a href="#" class="search_toggle" id="search-icon"><i class="tf-ion-android-search"></i></a>
       </li>
-      <li class="dropdown cart-nav dropdown-slide list-inline-item">
+      <li class="dropdown cart-nav dropdown-slide list-inline-item" (mouseover)="reload()">
         <a href="/cart" class="dropdown-toggle cart-icon" data-toggle="dropdown" data-hover="dropdown">
           <i class="tf-ion-android-cart"></i>
         </a>
@@ -57,17 +57,15 @@
           <div class="media">
             <!-- nombre d'article  -->
             <!-- <div class="text-center">{{empty}}</div> -->
-            <div class="media-body">
-              <span>Nombre d'articles </span>
-              <span>x {{ restoredSession.itemsTotal }}</span>
-              <!-- <input type="string" id="qty" class="input-text qty text"
-                        [(ngModel)]="restoredSession.itemsTotal" title="Qty"
-                        [ngModelOptions]="{standalone: true}"> -->
+            <div class="cart-summary">
+              <span class="h6">Nombre d'articles</span>
+            <span class="total-price h4" style="color: #424bfb;" *ngIf="defined">x{{ restoredSession.itemsTotal }}</span>
+              <span style="font-weight: bolder !important; "></span>
             </div>
           </div>
           <div class="cart-summary">
             <span class="h6">Total</span>
-            <span class="total-price h6">{{ restoredSession.grossTotal }} €</span>
+            <span class="total-price h6" *ngIf="defined">{{ restoredSession.grossTotal | number}} €</span>
             <div class="text-center cart-buttons mt-3">
               <a href="/cart" class="btn btn-small btn-transparent btn-block">Voir mon panier</a>
               <a href="#" class="btn btn-small btn-main btn-block">Checkout</a>

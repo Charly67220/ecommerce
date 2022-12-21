@@ -99,4 +99,12 @@ export class CartService {
       duration: 2000,
     });
   }
+
+  openSnackCoupon() {
+    this._snackBar.open('Votre coupon de réduction à bien été pris en compte', 'Splash', {
+      horizontalPosition: "right",
+      verticalPosition: "top",
+      duration: 2000,
+    });
+  }
 }

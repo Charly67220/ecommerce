@@ -147,7 +147,7 @@ input[type="tel"]:focus {
 
 .form-control:focus {
   box-shadow: none;
-  border: 1px solid #fb5c42;
+  border: 1px solid #424bfb !important;
 }
 
 .btn {
@@ -1496,7 +1496,7 @@ a.text-primary:hover {
 }
 
 .popular-products-item img {
-  max-width: 70px;
+  max-width: 160px;
 }
 
 .popular-products-item .price {

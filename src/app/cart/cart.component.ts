@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NgForm } from '@angular/forms';
 import { CartService } from '../cart.service';
 import { HttpService } from '../http.service';
 import { LastService } from '../last.service';
@@ -19,6 +20,7 @@ export class CartComponent {
   checkOut: number = 0;
   empty!: string;
   delivery!: string;
+  code!: string;
 
 
   constructor(
@@ -38,6 +40,10 @@ export class CartComponent {
         this.empty = "Votre panier est vide !";
       }
     };
+    this.calcDelivery();
+  }
+
+  calcDelivery() {
     if (this.restoredSession.grossTotal > 49) {
       this.delivery = "Offerts";
       this.checkOut = this.restoredSession.grossTotal;
@@ -68,5 +74,19 @@ export class CartComponent {
 
   stockRecentItem(product: CartItem): void {
     this.lastService.stockItem(product);
+  }
+
+  onSubmitForm(form: NgForm) {
+    if (form.value.code = "supercoupon2022") {
+      this.checkOut = this.restoredSession.grossTotal - 120;
+      if (this.checkOut < 0 ) {
+        this.restoredSession.grossTotal = 0;
+        this.checkOut = 0;
+      } else {
+        this.restoredSession.grossTotal = this.checkOut;
+      };
+      this.cartService.openSnackCoupon();
+      // this.calcDelivery(); <<<<<<<<<<<<<<<<<<<<< laisser les frais à 0 pour permettre aux utilisateurs d'aller au bout de la commande
+    }
   }
 }

@@ -5,7 +5,7 @@ import { HttpService } from '../http.service';
 import { Router } from '@angular/router';
 import { CartService } from '../cart.service';
 import { LastService } from '../last.service';
-import { ShoppingCart } from '../models/shopping-cart.model';
+// import { ShoppingCart } from '../models/shopping-cart.model';
 
 
 
@@ -40,7 +40,7 @@ export class ShopComponent {
       return
     } else {
       const restoredSession = JSON.parse(session);
-      this.prods = restoredSession.items;
+      this.prods = restoredSession.items.reverse();
     };
   }
 

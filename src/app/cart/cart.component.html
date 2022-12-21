@@ -23,7 +23,7 @@
     <div class="row justify-content-center">
       <div class="col-lg-12">
         <div class="product-list">
-          <form class="cart-form">
+          <form class="cart-form" #coupon="ngForm" (ngSubmit)="onSubmitForm(coupon)">
             <table class="table shop_table shop_table_responsive cart" cellspacing="0">
               <thead>
                 <tr>
@@ -74,14 +74,14 @@
                 </tr>
                 <tr>
                   <td colspan="6" class="actions">
-                    <div class="coupon">
-                      <input type="text" name="coupon_code" class="input-text form-control" id="coupon_code" value=""
-                        placeholder="Coupon code">
-                      <button type="button" class="btn btn-black btn-small" name="apply_coupon"
-                        value="Apply coupon">Apply coupon</button>
-                    </div>
-                    <input type="hidden" id="woocommerce-cart-nonce" name="woocommerce-cart-nonce" value="27da9ce3e8">
-                    <input type="hidden" name="_wp_http_referer" value="/cart/">
+                      <div class="coupon">
+                        <input type="text" name="code" class="input-text form-control" id="code" value=""
+                          placeholder="Code" [(ngModel)]="code">
+                        <button type="button" class="btn btn-black btn-small" name="apply_coupon" value="Apply coupon"
+                          type="submit">Utiliser mon code de réduction !</button>
+                      </div>
+                    <!-- <input type="hidden" id="woocommerce-cart-nonce" name="woocommerce-cart-nonce" value="27da9ce3e8">
+                    <input type="hidden" name="_wp_http_referer" value="/cart/"> -->
                   </td>
                 </tr>
               </tbody>

@@ -9,7 +9,6 @@ import { ShoppingCart } from './models/shopping-cart.model';
 export class LastService {
 
   private storageKey = 'recent';
-  stock: any;
 
   constructor() { }
 
@@ -73,7 +72,4 @@ export class LastService {
     this.save(recentProd)
   }
 
-  giveBack() {
-    return this.stock
-  }
 }

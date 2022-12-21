@@ -41,21 +41,20 @@
                 </tr>
                 <tr class="cart_item">
                 <tr class="cart_item" *ngFor="let item of items">
-                  <td class="product-thumbnail" data-title="Thumbnail">
+                  <td class="product-thumbnail" data-title="Photo">
                     <a routerLink="/product-single/{{item.productId}}" (click)="stockRecentItem(item)"><img
                         [src]="item.imageURL" [alt]="item.titre"
                         class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"></a>
                   </td>
-                  <td class="product-name" data-title="Product">
-                    <a href="#">{{ item.titre }}</a>
+                  <td class="product-name" data-title="Article :">
+                    <a routerLink="/product-single/{{item.productId}}" >{{ item.titre }}</a>
                   </td>
-
-                  <td class="product-price" data-title="Price">
+                  <td class="product-price" data-title="Prix">
                     <span class="amount"><span class="currencySymbol">
                         <pre wp-pre-tag-3=""></pre>
                       </span>{{ item.prixap | number}} €</span>
                   </td>
-                  <td class="product-quantity" data-title="Quantity">
+                  <td class="product-quantity" data-title="Quantité">
                     <div class="quantity">
                       <input type="number" id="qty" class="input-text qty text" step="1" min="0" max="9"
                         [(ngModel)]="item.quantity" title="Qty" size="4" (click)="changeQuantity(item, item.quantity)"

@@ -1,0 +1,17 @@
+container-fluid {
+    display:inline-flex;
+}
+
+@media (max-width: 768px) {
+    .container-fluid {
+        display:unset !important
+    }
+    .navbar-toggler {
+        // margin-left: 45%;
+        align-items: center;
+        color: #424bfb !important;
+    }
+    .navbar-brand {
+        margin-right: 15px !important;
+    }
+}

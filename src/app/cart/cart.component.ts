@@ -79,9 +79,10 @@ export class CartComponent {
   onSubmitForm(form: NgForm) {
     if (form.value.code = "supercoupon2022") {
       this.checkOut = this.restoredSession.grossTotal - 120;
-      if (this.checkOut < 0 ) {
+      if (this.checkOut < 0) {
         this.restoredSession.grossTotal = 0;
         this.checkOut = 0;
+        this.delivery = "Offerts";
       } else {
         this.restoredSession.grossTotal = this.checkOut;
       };

@@ -46,12 +46,12 @@
                         [src]="item.imageURL" [alt]="item.titre"
                         class="attachment-woocommerce_thumbnail size-woocommerce_thumbnail"></a>
                   </td>
-                  <td class="product-name" data-title="Article :">
-                    <a routerLink="/product-single/{{item.productId}}" >{{ item.titre }}</a>
+                  <td class="product-name" data-title="">
+                    <a routerLink="/product-single/{{item.productId}}" style="color:#424bfb;">{{ item.titre }}</a>
                   </td>
-                  <td class="product-price" data-title="Prix">
+                  <td class="product-price">
                     <span class="amount"><span class="currencySymbol">
-                        <pre wp-pre-tag-3=""></pre>
+                        <!-- <pre wp-pre-tag-3=""></pre> -->
                       </span>{{ item.prixap | number}} €</span>
                   </td>
                   <td class="product-quantity" data-title="Quantité">
@@ -61,7 +61,7 @@
                         [ngModelOptions]="{standalone: true}">
                     </div>
                   </td>
-                  <td class="product-subtotal" data-title="Total">
+                  <td class="product-subtotal">
                     <span class="amount">
                       <span class="currencySymbol">
                         <pre wp-pre-tag-3=""></pre>

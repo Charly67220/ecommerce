@@ -24,6 +24,41 @@ export class HttpService {
     return this.http.get<Produit[]>(`https://charlygo.fr/dbprodCat.php?categorie=${cat}`);
   }
 
+  filterByCat(expedition: string, sport: string, alimentation: string, voyage: string) {
+
+    //initialisation à 0 :
+    const tabproduits: Produit[] = []
+    if (expedition) {
+      console.log("expedition : ", expedition);
+      this.getProduitByCat('expedition').subscribe(produits => {
+        produits.forEach(produ => {
+          tabproduits.push(produ)
+        })
+      })
+    }
+    if (sport) {
+      this.getProduitByCat('sport').subscribe(produits => {
+        produits.forEach(produ => {
+          tabproduits.push(produ)
+        })
+      })
+    }
+    if (alimentation) {
+      this.getProduitByCat('alimentation').subscribe(produits => {
+        produits.forEach(produ => {
+          tabproduits.push(produ)
+        })
+      })
+    }
+    if (voyage) {
+      this.getProduitByCat('voyage').subscribe(produits => {
+        produits.forEach(produ => {
+          tabproduits.push(produ)
+        })
+      })
+    }
+    return tabproduits;
+  }
 }
 
 

@@ -1539,6 +1539,8 @@ a.text-primary:hover {
 
 .widget-sizes .custom-checkbox {
   margin-bottom: 10px;
+  align-items: center !important;
+  text-align: center !important;
 }
 
 .custom-control-input:checked~.custom-control-label::before {
@@ -2138,14 +2140,17 @@ table.shop_table_responsive {
   .product-thumbnail {
     display: none !important;
   }
-  .product-price {
+
+  .product-price span {
     display: none !important;
   }
+
   .product-remove {
     display: none !important;
   }
+
   .product-name {
-    color:#424bfb
+    color: #424bfb
   }
 
   table.shop_table_responsive tr td::before {

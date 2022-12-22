@@ -101,7 +101,7 @@ export class CartService {
   }
 
   openSnackCoupon() {
-    this._snackBar.open('Votre coupon de réduction à bien été pris en compte', 'Splash', {
+    this._snackBar.open('Votre coupon de réduction a bien été pris en compte', 'Splash', {
       horizontalPosition: "right",
       verticalPosition: "top",
       duration: 2000,

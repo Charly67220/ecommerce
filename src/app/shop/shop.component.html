@@ -7,9 +7,9 @@
           <h1 class="mb-3">Le Shop</h1>
           <p>Amoureux des grands paysages, passionnés de vélo et d'activité outdoors ? Venez découvrir ce que nous
             proposons pour s'évader !</p>
-            <ol class="breadcrumb bg-transparent justify-content-center">
-              <li class="breadcrumb-item"><a routerLink="/cart">Voir mon panier</a></li>
-            </ol>
+          <ol class="breadcrumb bg-transparent justify-content-center">
+            <li class="breadcrumb-item"><a routerLink="/cart">Voir mon panier</a></li>
+          </ol>
         </div>
       </div>
     </div>
@@ -44,8 +44,60 @@
               </div>
             </div>
           </div> -->
-          <div class="col-lg-4 col-12 col-md-6 col-sm-6 mb-5" *ngFor="let produit of produits$ | async">
-            <div class="product" *ngIf="page1">
+          <!-- color and size -->
+          <form class="mb-5" (ngSubmit)="onCatFilter()">
+
+            <!-- color -->
+            <!-- <section class="widget widget-colors mb-5">
+    <h3 class="widget-title h4 mb-4">Catégories</h3>
+    <ul class="list-inline">
+      <li class="list-inline-item mr-4">
+        <div class="custom-control custom-checkbox color-checkbox">
+          <input type="checkbox" class="custom-control-input" id="color4">
+          <label class="custom-control-label magenta" for="color4"></label>
+        </div>
+      </li>
+      <li class="list-inline-item mr-4">
+        <div class="custom-control custom-checkbox color-checkbox">
+          <input type="checkbox" class="custom-control-input" id="color5">
+          <label class="custom-control-label yellow" for="color5"></label>
+        </div>
+      </li>
+    </ul>
+  </section> -->
+
+            <!-- size -->
+            <section class="widget widget-sizes ">
+              <h3 class="widget-title text-center">Catégories</h3>
+              <div class="row">
+                <div class="custom-control custom-checkbox col-lg-3 col-6" >
+                  <input type="checkbox" class="custom-control-input" id="alimentation" name="alimentation" checked
+                    style="margin: 5px" [(ngModel)]="alimentation" > <br>
+                  <label class="custom-control-label" for="size1">Alimentation</label>
+                </div>
+                <div class="custom-control custom-checkbox col-lg-3 col-6">
+                  <input type="checkbox" class="custom-control-input" id="voyage" name="voyage" style="margin: 5px"
+                    [(ngModel)]="voyage"> <br>
+                  <label class="custom-control-label" for="size2">Voyage</label>
+                </div>
+                <div class="custom-control custom-checkbox col-lg-3 col-6">
+                  <input type="checkbox" class="custom-control-input" id="expedition" name="expedition"
+                    style="margin: 5px" [(ngModel)]="expedition"> <br>
+                  <label class="custom-control-label" for="size3">Expédition</label>
+                </div>
+                <div class="custom-control custom-checkbox col-lg-3 col-6">
+                  <input type="checkbox" class="custom-control-input" id="sport" name="sport" style="margin: 5px"
+                    [(ngModel)]="sport"> <br>
+                  <label class="custom-control-label" for="size4">Sport</label>
+                </div>
+              </div>
+            </section>
+            <div class="text-center mb-2">
+              <button type="submit" class="btn btn-black btn-small ">Filtrer</button>
+            </div>
+          </form>
+          <div class="col-lg-4 col-12 col-md-6 col-sm-6 mb-5" *ngFor="let produit of tabproduits">
+            <div class="product" *ngIf="filter">
               <div class="product-wrap">
                 <a (click)="stockRecentItem(produit)" style="cursor:pointer"><img class="img-fluid w-100 mb-3 img-first"
                     [src]="produit.imageURL" [alt]="produit.titre" id="image" /></a>
@@ -56,7 +108,28 @@
               </div>
 
               <div class="product-info">
-                <h2 class="product-title h5 mb-0"><a (click)="onViewProduct(produit.id)" style="cursor:pointer">{{ produit.titre }}</a></h2>
+                <h2 class="product-title h5 mb-0"><a (click)="onViewProduct(produit.id)" style="cursor:pointer">{{
+                    produit.titre }}</a></h2>
+                <span class="price">
+                  {{ produit.prixap | number }} €
+                </span>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 col-12 col-md-6 col-sm-6 mb-5" *ngFor="let produit of produits$ | async">
+            <div class="product" *ngIf="!filter">
+              <div class="product-wrap">
+                <a (click)="stockRecentItem(produit)" style="cursor:pointer"><img class="img-fluid w-100 mb-3 img-first"
+                    [src]="produit.imageURL" [alt]="produit.titre" id="image" /></a>
+              </div>
+              <div class="product-hover-overlay">
+                <a (click)="addProductToCart(produit)" style="color: white;"><i class="tf-ion-android-cart"></i></a>
+                <a href="#"><i class="tf-ion-ios-heart"></i></a>
+              </div>
+
+              <div class="product-info">
+                <h2 class="product-title h5 mb-0"><a (click)="onViewProduct(produit.id)" style="cursor:pointer">{{
+                    produit.titre }}</a></h2>
                 <span class="price">
                   {{ produit.prixap | number }} €
                 </span>
@@ -106,61 +179,14 @@
 
 
 
-        <!-- color and size -->
-        <form class="mb-5" (ngSubmit)="onCatFilter()">
 
-          <!-- color -->
-          <!-- <section class="widget widget-colors mb-5">
-            <h3 class="widget-title h4 mb-4">Catégories</h3>
-            <ul class="list-inline">
-              <li class="list-inline-item mr-4">
-                <div class="custom-control custom-checkbox color-checkbox">
-                  <input type="checkbox" class="custom-control-input" id="color4">
-                  <label class="custom-control-label magenta" for="color4"></label>
-                </div>
-              </li>
-              <li class="list-inline-item mr-4">
-                <div class="custom-control custom-checkbox color-checkbox">
-                  <input type="checkbox" class="custom-control-input" id="color5">
-                  <label class="custom-control-label yellow" for="color5"></label>
-                </div>
-              </li>
-            </ul>
-          </section> -->
-
-          <!-- size -->
-          <section class="widget widget-sizes mb-5">
-            <h3 class="widget-title h4 mb-4">Catégories</h3>
-            <div class="custom-control custom-checkbox">
-              <input type="checkbox" class="custom-control-input" id="alimentation" name="alimentation" checked
-                style="margin: 5px" [(ngModel)]="alimentation">
-              <label class="custom-control-label" for="size1">Alimentation</label>
-            </div>
-            <div class="custom-control custom-checkbox">
-              <input type="checkbox" class="custom-control-input" id="voyage" name="voyage" style="margin: 5px"
-                [(ngModel)]="voyage">
-              <label class="custom-control-label" for="size2">Voyage</label>
-            </div>
-            <div class="custom-control custom-checkbox">
-              <input type="checkbox" class="custom-control-input" id="expedition" name="expedition" style="margin: 5px"
-                [(ngModel)]="expedition">
-              <label class="custom-control-label" for="size3">Expédition</label>
-            </div>
-            <div class="custom-control custom-checkbox">
-              <input type="checkbox" class="custom-control-input" id="sport" name="sport" style="margin: 5px"
-                [(ngModel)]="sport">
-              <label class="custom-control-label" for="size4">Sport</label>
-            </div>
-          </section>
-
-          <button type="submit" class="btn btn-black btn-small">Filtrer</button>
-        </form>
 
 
         <!-- recent product -->
         <section class="widget widget-popular mb-5">
           <h3 class="widget-title mb-4 h4 text-center">Articles vus récemment</h3>
-          <a class="popular-products-item media row justify-content-center" routerLink="/product-single/{{prod.productId}}" *ngFor="let prod of prods">
+          <a class="popular-products-item media row justify-content-center"
+            routerLink="/product-single/{{prod.productId}}" *ngFor="let prod of prods">
             <img [src]="prod.imageURL" [alt]="prod.titre" class="img-fluid mr-4 ">
             <span class="price text-center">{{ prod.prixap | number}} €</span>
             <div class="media-body text-center">

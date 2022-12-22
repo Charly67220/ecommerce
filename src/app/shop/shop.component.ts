@@ -21,10 +21,14 @@ export class ShopComponent {
   sport!: string;
   alimentation!: string;
   voyage!: string;
+  tabproduits: any[] = [];
+  produits!: Produit[];
+  filter: boolean = false;
 
   prods: any;
-  
+
   produits$!: Observable<Produit[]>;
+  myGridOptions: any;
 
   constructor(
     public httpService: HttpService,
@@ -34,6 +38,9 @@ export class ShopComponent {
   ) { }
 
   ngOnInit(): void {
+    // this.httpService.getProduitByCat('').subscribe(data => {
+    //   this.tabproduits = data
+    // });
     this.produits$ = this.httpService.getAllProduit();
     const session = this.lastService.getRecentItem();
     if (session === null) {
@@ -61,30 +68,19 @@ export class ShopComponent {
   }
 
   onCatFilter() {
-    console.log(this.expedition);
-  
-    //initialisation à 0 :
-    this.produits$ = this.httpService.getProduitByCat('');
-    if (this.sport){
-      this.produits$ = this.httpService.getProduitByCat('sport');
-    }
-    if (this.expedition){
-      this.produits$ = this.httpService.getProduitByCat('expedition');
-    }
-    if (this.alimentation){
-      this.produits$ = this.httpService.getProduitByCat('alimentation');
-    }
-    if (this.voyage){
-      this.produits$ = this.httpService.getProduitByCat('voyage');
+    this.filter = true;
+    this.tabproduits = this.httpService.filterByCat(this.expedition, this.sport, this.alimentation, this.voyage);
+    if (!this.voyage && !this.alimentation && !this.sport && !this.expedition) {
+      this.filter = false;
     }
   }
 
-  addProductToCart(produit: Produit): void{
+  addProductToCart(produit: Produit): void {
     this.cartService.addItem(produit, 1);
- }
+  }
 
- stockRecentItem(produit: Produit): void {
-  this.onViewProduct(produit.id);
-  this.lastService.stockProd(produit)
-}
+  stockRecentItem(produit: Produit): void {
+    this.onViewProduct(produit.id);
+    this.lastService.stockProd(produit)
+  }
 }

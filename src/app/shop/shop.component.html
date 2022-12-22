@@ -21,58 +21,13 @@
     <div class="row">
       <div class="col-md-9">
         <div class="row">
-          <!-- <div class="col-lg-4 col-12 col-md-6 col-sm-6 mb-5">
-            <div class="product">
-              <div class="product-wrap">
-                <a routerLink="/product-single"><img class="img-fluid w-100 mb-3 img-first" src="assets/images/322.jpg"
-                    alt="product-img" /></a>
-                <a routerLink="/product-single"><img class="img-fluid w-100 mb-3 img-second" src="assets/images/444.jpg"
-                    alt="product-img" /></a>
-              </div>
-
-              <span class="onsale">Sale</span>
-              <div class="product-hover-overlay">
-                <a href="#"><i class="tf-ion-android-cart"></i></a>
-                <a href="#"><i class="tf-ion-ios-heart"></i></a>
-              </div>
-
-              <div class="product-info">
-                <h2 class="product-title h5 mb-0"><a routerLink="/product-single">Floral Kirby</a></h2>
-                <span class="price">
-                  $329.10
-                </span>
-              </div>
-            </div>
-          </div> -->
-          <!-- color and size -->
           <form class="mb-5" (ngSubmit)="onCatFilter()">
-
-            <!-- color -->
-            <!-- <section class="widget widget-colors mb-5">
-    <h3 class="widget-title h4 mb-4">Catégories</h3>
-    <ul class="list-inline">
-      <li class="list-inline-item mr-4">
-        <div class="custom-control custom-checkbox color-checkbox">
-          <input type="checkbox" class="custom-control-input" id="color4">
-          <label class="custom-control-label magenta" for="color4"></label>
-        </div>
-      </li>
-      <li class="list-inline-item mr-4">
-        <div class="custom-control custom-checkbox color-checkbox">
-          <input type="checkbox" class="custom-control-input" id="color5">
-          <label class="custom-control-label yellow" for="color5"></label>
-        </div>
-      </li>
-    </ul>
-  </section> -->
-
-            <!-- size -->
             <section class="widget widget-sizes ">
               <h3 class="widget-title text-center">Catégories</h3>
               <div class="row">
-                <div class="custom-control custom-checkbox col-lg-3 col-6" >
+                <div class="custom-control custom-checkbox col-lg-3 col-6">
                   <input type="checkbox" class="custom-control-input" id="alimentation" name="alimentation" checked
-                    style="margin: 5px" [(ngModel)]="alimentation" > <br>
+                    style="margin: 5px" [(ngModel)]="alimentation"> <br>
                   <label class="custom-control-label" for="size1">Alimentation</label>
                 </div>
                 <div class="custom-control custom-checkbox col-lg-3 col-6">
@@ -104,7 +59,7 @@
               </div>
               <div class="product-hover-overlay">
                 <a (click)="addProductToCart(produit)" style="color: white;"><i class="tf-ion-android-cart"></i></a>
-                <a href="#"><i class="tf-ion-ios-heart"></i></a>
+                <a (click)="stockWishes()" style="color: white;"><i class="tf-ion-ios-heart"></i></a>
               </div>
 
               <div class="product-info">
@@ -124,7 +79,7 @@
               </div>
               <div class="product-hover-overlay">
                 <a (click)="addProductToCart(produit)" style="color: white;"><i class="tf-ion-android-cart"></i></a>
-                <a href="#"><i class="tf-ion-ios-heart"></i></a>
+                <a (click)="stockWishes()"><i class="tf-ion-ios-heart"></i></a>
               </div>
 
               <div class="product-info">

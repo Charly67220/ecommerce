@@ -5,6 +5,7 @@ import { HttpService } from '../http.service';
 import { Router } from '@angular/router';
 import { CartService } from '../cart.service';
 import { LastService } from '../last.service';
+import { Car } from '../models/car.model';
 // import { ShoppingCart } from '../models/shopping-cart.model';
 
 
@@ -26,10 +27,10 @@ export class ShopComponent {
   filter: boolean = false;
 
   prods: any;
-
   produits$!: Observable<Produit[]>;
-  myGridOptions: any;
 
+  car: Car =  {model:'', price:0};
+  
   constructor(
     public httpService: HttpService,
     private router: Router,
@@ -38,9 +39,6 @@ export class ShopComponent {
   ) { }
 
   ngOnInit(): void {
-    // this.httpService.getProduitByCat('').subscribe(data => {
-    //   this.tabproduits = data
-    // });
     this.produits$ = this.httpService.getAllProduit();
     const session = this.lastService.getRecentItem();
     if (session === null) {
@@ -51,17 +49,17 @@ export class ShopComponent {
     };
   }
 
-  displayPage(page: any) {
-    if (page == '1') {
-      this.page1 = true;
-      this.page2 = false;
+  // displayPage(page: any) {
+  //   if (page == '1') {
+  //     this.page1 = true;
+  //     this.page2 = false;
 
-    };
-    if (page == '2') {
-      this.page2 = true;
-      this.page1 = false;
-    };
-  }
+  //   };
+  //   if (page == '2') {
+  //     this.page2 = true;
+  //     this.page1 = false;
+  //   };
+  // }
 
   onViewProduct(num: any) {
     this.router.navigateByUrl(`product-single/${num}`);
@@ -82,5 +80,16 @@ export class ShopComponent {
   stockRecentItem(produit: Produit): void {
     this.onViewProduct(produit.id);
     this.lastService.stockProd(produit)
+  }
+
+  stockWishes(){
+    this.car = {model:'cammaro is beautifull', price:15000};
+    this.httpService.store(this.car).subscribe({
+      // /!\ ne pas enlever le subscribe !
+      next: (v) => console.log(v),
+      error: (e) => console.error(e),
+      complete: () => console.info('complete')
+    }
+    );
   }
 }

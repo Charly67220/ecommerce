@@ -3,7 +3,6 @@ import { HttpClient } from '@angular/common/http'
 import { Observable } from 'rxjs';
 import { Produit } from './models/produit.model';
 import { catchError, map } from 'rxjs/operators';
-import { Car } from './models/car.model';
 
 
 @Injectable({
@@ -32,29 +31,14 @@ export class HttpService {
     })
   }
 
-  // store(car: Car) {
-  //   console.log(car, " <<<<<<<<<<<<<<< car in httpService");
-  //   return this.http.post(`https://charlygo.fr/dbfav.php`, car).subscribe({
-  //     next: data => {
-  //       console.log(data, "<<<<<<<<< data");
-  //     },
-  //     error: error => {
-  //       console.error('There was an error!', error);
-  //     }
-  //   })
-  // }
-
-  store(car: Car) {
-    console.log(car, " <<<<<<<<<<<<<<< car in httpService");
-    return this.http.post(`https://charlygo.fr/dbfav.php`,{ data: car }).pipe(
+  store(prod: Produit) {
+    // console.log(prod, " <<< prod in httpService");
+    return this.http.post(`https://charlygo.fr/dbfav.php`,{ data: prod }).pipe(
       map((res: any) => {
         return res['data'];
       })
     );
   }
-
-
-
 
 
   filterByCat(expedition: string, sport: string, alimentation: string, voyage: string) {

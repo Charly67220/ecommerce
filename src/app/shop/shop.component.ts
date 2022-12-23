@@ -5,7 +5,6 @@ import { HttpService } from '../http.service';
 import { Router } from '@angular/router';
 import { CartService } from '../cart.service';
 import { LastService } from '../last.service';
-import { Car } from '../models/car.model';
 // import { ShoppingCart } from '../models/shopping-cart.model';
 
 
@@ -29,8 +28,7 @@ export class ShopComponent {
   prods: any;
   produits$!: Observable<Produit[]>;
 
-  car: Car =  {model:'', price:0};
-  
+
   constructor(
     public httpService: HttpService,
     private router: Router,
@@ -82,14 +80,14 @@ export class ShopComponent {
     this.lastService.stockProd(produit)
   }
 
-  stockWishes(){
-    this.car = {model:'cammaro is beautifull', price:15000};
-    this.httpService.store(this.car).subscribe({
+  stockWishes(produit: Produit) {
+    this.httpService.store(produit).subscribe({
       // /!\ ne pas enlever le subscribe !
       next: (v) => console.log(v),
       error: (e) => console.error(e),
       complete: () => console.info('complete')
     }
     );
+    this.cartService.openSnackBar('Produit ajouté aux favoris')
   }
 }

@@ -86,7 +86,7 @@ export class CartComponent {
       } else {
         this.restoredSession.grossTotal = this.checkOut;
       };
-      this.cartService.openSnackCoupon();
+      this.cartService.openSnackBar('Votre coupon de réduction a bien été pris en compte');
       // this.calcDelivery(); <<<<<<<<<<<<<<<<<<<<< laisser les frais à 0 pour permettre aux utilisateurs d'aller au bout de la commande
     }
   }

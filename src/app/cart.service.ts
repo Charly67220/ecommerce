@@ -34,7 +34,7 @@ export class CartService {
 
     this.calculateCart(cart);
     this.save(cart);
-    this.openSnackBar();
+    this.openSnackBar('Produit ajouté au panier !');
   }
 
   public deleteItem(produit: Produit) {
@@ -92,19 +92,12 @@ export class CartService {
     return localStorage.getItem(this.storageKey);
   }
 
-  openSnackBar() {
-    this._snackBar.open('Produit ajouté au panier !', 'Splash', {
+  openSnackBar(text: any) {
+    this._snackBar.open( text, 'Splash', {
       horizontalPosition: "right",
       verticalPosition: "top",
       duration: 2000,
     });
   }
 
-  openSnackCoupon() {
-    this._snackBar.open('Votre coupon de réduction a bien été pris en compte', 'Splash', {
-      horizontalPosition: "right",
-      verticalPosition: "top",
-      duration: 2000,
-    });
-  }
 }

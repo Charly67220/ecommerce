@@ -1,8 +1,11 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http'
+import { HttpClient, HttpHeaders } from '@angular/common/http'
 import { Observable } from 'rxjs';
 import { Produit } from './models/produit.model';
 import { catchError, map } from 'rxjs/operators';
+import { ShoppingCart } from './models/shopping-cart.model';
+import { NgForm } from '@angular/forms';
+
 
 
 @Injectable({
@@ -10,6 +13,9 @@ import { catchError, map } from 'rxjs/operators';
 })
 export class HttpService {
   produits: any;
+  email!: string;
+
+
 
   constructor(private http: HttpClient) { }
 
@@ -25,19 +31,43 @@ export class HttpService {
     return this.http.get<Produit[]>(`https://charlygo.fr/dbprodCat.php?categorie=${cat}`);
   }
 
-  postFavoriteProduit(prod: Produit) {
-    this.http.post<any>('https://reqres.in/api/posts', { title: 'Angular POST Request Example' }).subscribe(data => {
-      prod.id = data.id;
-    })
-  }
-
   store(prod: Produit) {
     // console.log(prod, " <<< prod in httpService");
-    return this.http.post(`https://charlygo.fr/dbfav.php`,{ data: prod }).pipe(
+    return this.http.post(`https://charlygo.fr/dbfav.php`, { data: prod }).pipe(
       map((res: any) => {
         return res['data'];
       })
     );
+  }
+
+  sendMail(form: NgForm, cart: ShoppingCart) {
+    // console.log(form);
+    // console.log(form.value);
+
+    // console.log(form.mail);
+    // this.email = JSON.stringify(form.mail)
+    // console.log(cart.itemsTotal, "<<<<<<<<<<<< Cart");
+    // cart.items.forEach(element => {
+    //   console.log(element.titre);
+    //   console.log(element.quantity);
+    // });
+    // this.http.post(`https://charlygo.fr/dmail.php`, { email: form.mail }).subscribe({
+    //   error: (e) => console.error(e),
+    //   complete: () => console.info('complete')
+    // });
+    // this.http.post("https://charlygo.fr/dmail.php", {message : "ceci est un test", mail: form.mail});
+
+    const httpOptions = {
+      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
+    }
+
+      this.http
+        .post("https://formspree.io/f/xyyozook", form, httpOptions).subscribe(results => {
+          // console.log(results);
+          // alert("Merci " + form.value.name + ", votre commande a bien été enregistrée ! ");
+          alert("Merci, votre commande a bien été enregistrée ! ");
+          window.location.reload();
+        });
   }
 
 

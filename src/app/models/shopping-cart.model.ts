@@ -2,16 +2,17 @@ import { CartItem } from "./cart-item.model";
 
 export class ShoppingCart {
   public items: CartItem[] = new Array<CartItem>();
-  public deliveryOptionId!: string;
-  public grossTotal: number = 0;
-  public deliveryTotal: number = 0;
   public itemsTotal: number = 0;
+  public grossTotal: number = 0;
+  public deliveryTotal!: string;
+  public checkOut: number = 0;
+
 
   public updateFrom(src: ShoppingCart) {
     this.items = src.items;
-    this.deliveryOptionId = src.deliveryOptionId;
+    this.itemsTotal = src.itemsTotal;
     this.grossTotal = src.grossTotal;
     this.deliveryTotal = src.deliveryTotal;
-    this.itemsTotal = src.itemsTotal;
+    this.checkOut = src.checkOut;
   }
 }

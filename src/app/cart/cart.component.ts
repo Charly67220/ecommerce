@@ -40,18 +40,9 @@ export class CartComponent {
         this.empty = "Votre panier est vide !";
       }
     };
-    this.calcDelivery();
   }
 
-  calcDelivery() {
-    if (this.restoredSession.grossTotal > 49) {
-      this.delivery = "Offerts";
-      this.checkOut = this.restoredSession.grossTotal;
-    } else {
-      this.delivery = "8 €";
-      this.checkOut = this.restoredSession.grossTotal + 8;
-    };
-  }
+
 
   reload() {
     this.ngOnInit();
@@ -77,17 +68,16 @@ export class CartComponent {
   }
 
   onSubmitForm(form: NgForm) {
-    if (form.value.code = "supercoupon2022") {
-      this.checkOut = this.restoredSession.grossTotal - 120;
-      if (this.checkOut < 0) {
+    if (form.value.code === "supercoupon2022") {
+      this.restoredSession.checkOut = this.restoredSession.grossTotal - 120;
+      if (this.restoredSession.checkOut < 0) {
         this.restoredSession.grossTotal = 0;
-        this.checkOut = 0;
-        this.delivery = "Offerts";
+        this.restoredSession.checkOut = 0;
+        this.restoredSession.deliveryTotal = "Offerts";
       } else {
-        this.restoredSession.grossTotal = this.checkOut;
+        this.restoredSession.grossTotal = this.restoredSession.checkOut;
       };
       this.cartService.openSnackBar('Votre coupon de réduction a bien été pris en compte');
-      // this.calcDelivery(); <<<<<<<<<<<<<<<<<<<<< laisser les frais à 0 pour permettre aux utilisateurs d'aller au bout de la commande
     }
   }
 }

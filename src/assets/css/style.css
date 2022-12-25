@@ -177,7 +177,7 @@ input[type="tel"]:focus {
 
 .btn-main {
   background: transparent;
-  color: #fb5c42 !important;
+  color: #424bfb !important;
   border-color: #0e1260;
   font-size: 25px;
 }
@@ -2196,7 +2196,7 @@ table.shop_table_responsive {
 }
 
 .footer-widget ul li a:hover {
-  color: #fb5c42;
+  color: #424bfb;
 }
 
 .social-icons a {

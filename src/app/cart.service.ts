@@ -86,6 +86,18 @@ export class CartService {
     cart.itemsTotal = cart.items
       .map((item) => item.quantity)
       .reduce((previous, current) => previous + current, 0);
+      // deliveryTotal
+      if (cart.grossTotal > 49) {
+        cart.deliveryTotal = "Offerts";
+        cart.checkOut = cart.grossTotal;
+      } else {
+        cart.deliveryTotal = "8 €";
+        cart.checkOut = cart.grossTotal + 8;
+      };
+  }
+
+  calcDelivery() {
+  
   }
 
   getItemFromCart() {

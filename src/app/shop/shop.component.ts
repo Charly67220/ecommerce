@@ -86,8 +86,7 @@ export class ShopComponent {
       next: (v) => console.log(v),
       error: (e) => console.error(e),
       complete: () => console.info('complete')
-    }
-    );
+    });
     this.cartService.openSnackBar('Produit ajouté aux favoris')
   }
 }

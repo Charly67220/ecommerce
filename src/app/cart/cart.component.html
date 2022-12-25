@@ -107,15 +107,15 @@
             </li>
             <li class="d-flex justify-content-between pb-2 mb-3">
               <h5>Frais de livraison :</h5>
-              <span>{{ delivery }}</span>
+              <span>{{ restoredSession.deliveryTotal }}</span>
             </li>
 
             <li class="d-flex justify-content-between pb-2 mb-3">
               <h5>Total de mon panier :</h5>
-              <span>{{ checkOut | number }} €</span>
+              <span>{{ restoredSession.checkOut | number }} €</span>
             </li>
           </ul>
-          <a href="#" class="btn btn-main btn-small">Proceed to checkout</a>
+          <a routerLink="/checkout" class="btn btn-main btn-small">Passer à la caisse</a>
         </div>
       </div>
     </div>

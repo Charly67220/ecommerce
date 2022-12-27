@@ -2238,6 +2238,11 @@ table.shop_table_responsive {
   opacity: 1;
   -webkit-transition: all .25s ease-in-out !important;
   transition: all .25s ease-in-out !important;
+
+  /* à vérifier sur mobile directement : */
+  height: 60px !important;
+  width: 60px !important;
+
 }
 
 @media (min-width: 768px) {

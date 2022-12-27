@@ -105,10 +105,10 @@
       </form> -->
       <ul class="top-menu list-inline mb-0 d-none d-lg-block" id="top-menu">
         <li class="list-inline-item">
-          <a href="#" class="search_toggle" id="search-icon"><i class="tf-ion-android-search"></i></a>
+          <a class="search_toggle" id="search-icon"><i class="tf-ion-android-search"></i></a>
         </li>
         <li class="dropdown cart-nav dropdown-slide list-inline-item" (mouseover)="reload()">
-          <a href="/cart" class="dropdown-toggle cart-icon" data-toggle="dropdown" data-hover="dropdown">
+          <a [routerLink]="['/cart']" class="dropdown-toggle cart-icon" data-toggle="dropdown" data-hover="dropdown">
             <i class="tf-ion-android-cart"></i>
           </a>
           <div class="dropdown-menu cart-dropdown">

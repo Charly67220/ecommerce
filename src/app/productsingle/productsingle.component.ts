@@ -80,4 +80,13 @@ export class ProductsingleComponent {
     this.lastService.stockProd(produit);
   }
 
+  stockWishes(produit: Produit) {
+    this.httpService.store(produit).subscribe({
+      // /!\ ne pas enlever le subscribe !
+      next: (v) => console.log(v),
+      error: (e) => console.error(e),
+      complete: () => console.info('complete')
+    });
+    this.cartService.openSnackBar('Produit ajouté aux favoris')
+  }
 }

@@ -83,9 +83,9 @@ export class ProductsingleComponent {
   stockWishes(produit: Produit) {
     this.httpService.store(produit).subscribe({
       // /!\ ne pas enlever le subscribe !
-      next: (v) => console.log(v),
+      // next: (v) => console.log(v),
       error: (e) => console.error(e),
-      complete: () => console.info('complete')
+      // complete: () => console.info('complete')
     });
     this.cartService.openSnackBar('Produit ajouté aux favoris')
   }

@@ -5,6 +5,8 @@ import { Produit } from './models/produit.model';
 import { catchError, map } from 'rxjs/operators';
 import { ShoppingCart } from './models/shopping-cart.model';
 import { NgForm } from '@angular/forms';
+import { getMultipleValuesInSingleSelectionError } from '@angular/cdk/collections';
+import { Mail } from './models/mail.model';
 
 
 
@@ -13,7 +15,7 @@ import { NgForm } from '@angular/forms';
 })
 export class HttpService {
   produits: any;
-  email!: string;
+  mess!: string;
 
 
 
@@ -40,34 +42,12 @@ export class HttpService {
     );
   }
 
-  sendMail(form: NgForm, cart: ShoppingCart) {
-    // console.log(form);
-    // console.log(form.value);
-
-    // console.log(form.mail);
-    // this.email = JSON.stringify(form.mail)
-    // console.log(cart.itemsTotal, "<<<<<<<<<<<< Cart");
-    // cart.items.forEach(element => {
-    //   console.log(element.titre);
-    //   console.log(element.quantity);
-    // });
-    // this.http.post(`https://charlygo.fr/dmail.php`, { email: form.mail }).subscribe({
-    //   error: (e) => console.error(e),
-    //   complete: () => console.info('complete')
-    // });
-    // this.http.post("https://charlygo.fr/dmail.php", {message : "ceci est un test", mail: form.mail});
-
-    const httpOptions = {
-      headers: new HttpHeaders({ 'Content-Type': 'application/json' })
-    }
-
-      this.http
-        .post("https://formspree.io/f/xyyozook", form, httpOptions).subscribe(results => {
-          // console.log(results);
-          // alert("Merci " + form.value.name + ", votre commande a bien été enregistrée ! ");
-          alert("Merci, votre commande a bien été enregistrée ! ");
-          window.location.reload();
-        });
+  sendMail(mail: Mail) {
+     return this.http.post(`https://charlygo.fr/dmail.php`, {data: mail}).pipe(
+      map((res: any) => {
+        return res['data'];
+      })
+    );
   }
 
 

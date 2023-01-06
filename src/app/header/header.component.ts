@@ -11,7 +11,7 @@ export class HeaderComponent {
 
   session: any;
   restoredSession: any;
-  defined: boolean = true;
+  defined: boolean = false;
 
   constructor(
     public cartService: CartService,
@@ -23,6 +23,7 @@ export class HeaderComponent {
       return;
     } else {
       this.restoredSession = JSON.parse(this.session);
+      this.defined = true;
     };
     // console.log(localStorage)
   }

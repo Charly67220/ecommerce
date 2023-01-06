@@ -90,14 +90,14 @@
       </div>
     </div>
     <div class="row justify-content-end">
-      <div class="col-lg-4">
+      <div class="col-lg-4" *ngIf="defined">
         <div class="cart-info card p-4 mt-4">
           <button type="button" class="btn btn-black btn-small" name="discared" value="discared"
             (click)="discardCart()">Vider mon panier</button>
         </div>
       </div>
       <div class="col-lg-4"></div>
-      <div class="col-lg-4">
+      <div class="col-lg-4" *ngIf="defined">
         <div class="cart-info card p-4 mt-4">
           <h4 class="mb-4">Total des {{ restoredSession.itemsTotal }} articles</h4>
           <ul class="list-unstyled mb-4">
@@ -115,7 +115,7 @@
               <span>{{ restoredSession.checkOut | number }} €</span>
             </li>
           </ul>
-          <a routerLink="/checkout" class="btn btn-main btn-small">Passer à la caisse</a>
+          <a (click)="checkOUT()" class="btn btn-main btn-small">Passer à la caisse</a>
         </div>
       </div>
     </div>

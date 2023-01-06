@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router } from '@angular/router';
 import { CartService } from '../cart.service';
 import { HttpService } from '../http.service';
 import { LastService } from '../last.service';
@@ -21,23 +22,28 @@ export class CartComponent {
   empty!: string;
   delivery!: string;
   code!: string;
+  defined: boolean = false;
 
 
   constructor(
     public cartService: CartService,
     public httpService: HttpService,
     public lastService: LastService,
+    private router: Router,
   ) { }
 
   ngOnInit(): void {
     this.session = this.cartService.getItemFromCart();
     if (this.session === null) {
       this.empty = "Votre panier est vide !";
+      this.defined = false;
     } else {
       this.restoredSession = JSON.parse(this.session);
       this.items = this.restoredSession.items;
+      this.defined = true;
       if (this.items.length === 0) {
         this.empty = "Votre panier est vide !";
+        this.defined = false;
       }
     };
   }
@@ -78,6 +84,12 @@ export class CartComponent {
         this.restoredSession.grossTotal = this.restoredSession.checkOut;
       };
       this.cartService.openSnackBar('Votre coupon de réduction a bien été pris en compte');
+    }
+  }
+
+  checkOUT() {
+    if (this.empty !== "Votre panier est vide !") {
+      this.router.navigate(['/checkout']);
     }
   }
 }

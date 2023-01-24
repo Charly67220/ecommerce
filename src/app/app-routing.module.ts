@@ -32,7 +32,7 @@ const routes: Routes = [
   { path: 'shop', component: ShopComponent},
   { path: 'signup', component: SignupComponent},
   { path: 'about', component: AboutusComponent},
-
+  { path: '**',    component: HomeComponent },
 ];
 
 @NgModule({
